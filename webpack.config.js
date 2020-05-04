@@ -1,22 +1,33 @@
 const path = require('path');
+const autoprefixer = require('autoprefixer');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const Comb = require('csscomb');
-const comb = new Comb('zen');
-
-comb.processPath('./src/assets/scss');
-
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const isDev = process.env.NODE_ENV === 'development'; // Check mode
 
 const cssLoaders = loader => {
     const loaders = [
         {
             loader: MiniCssExtractPlugin.loader,
-            options: { sourceMap: true },
+            options: {
+                sourceMap: true
+            },
         },
         {
             loader: 'css-loader',
-            options: { sourceMap: true },
+            options: {
+                sourceMap: true
+            },
+        },
+        {
+            loader: 'postcss-loader',
+            options: {
+                plugins: [
+                    autoprefixer()
+                ],
+                sourceMap: true
+            },
         },
     ];
 
@@ -46,6 +57,10 @@ const plugins = () => {
         new MiniCssExtractPlugin({
             filename: `[name].css`,
         }),
+        new SpriteLoaderPlugin({
+            plainSprite: true
+        }),
+        new CleanWebpackPlugin(),
     ];
 
     return base;
@@ -57,7 +72,8 @@ module.exports = {
     entry: {
         main: [
             '@babel/polyfill',
-            './index.js'
+            './index.js',
+            './assets/scss/style.sass',
         ],
     },
     output: {
@@ -71,6 +87,11 @@ module.exports = {
             '@': path.resolve(__dirname, 'src'),
         },
     },
+    devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        port: 4200,
+        hot: isDev,
+    },
     module: {
         rules: [
             {
@@ -82,7 +103,11 @@ module.exports = {
                 use: cssLoaders('sass-loader')
             },
             {
-                test: /\.(jpg|svg|png)$/,
+                test: /\.(ttf|woff|woff2|eot)$/,
+                use: ['file-loader']
+            },
+            {
+                test: /\.(jp?g|png|gif)$/,
                 use: ['file-loader']
             },
             {
@@ -100,7 +125,29 @@ module.exports = {
                     loader: 'babel-loader',
                     options: babelOptions('@babel/preset-react')
                 }
-            }
+            },
+            {
+                test: /\.svg$/,
+                use: [
+                    {
+                        loader: 'svg-sprite-loader',
+                        options: {
+                            extract: true,
+                            spriteFilename: './icons/icons.svg',
+                            symbolId: filePath => 'icon-' + path.basename(filePath).split('.')[0]
+                        }
+                    },
+                    {
+                        loader: 'svgo-loader',
+                        options: {
+                            plugins: [
+                                {convertColors: {currentColor: true}},
+                                {removeAttrs: {attrs: '(opacity)'}}
+                            ]
+                        }
+                    },
+                ]
+            },
         ],
     },
     devtool: isDev ? 'source-map' : '',

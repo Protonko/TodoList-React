@@ -1,0 +1,21 @@
+.add-todo
+    display: flex
+    justify-content: center
+    margin-bottom: rem(20px)
+
+    &__input
+        width: 50%
+
+    &__button
+        display: flex
+        align-items: center
+
+        &:active
+            .add-todo__button-icon
+                color: $white
+
+        &-text
+            margin-left: rem(5px)
+
+        &-icon
+            transition: .5s color

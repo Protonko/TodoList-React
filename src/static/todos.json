@@ -1,0 +1,22 @@
+{
+  "0": {
+    "id": "001",
+    "title": "Сделать Todo List на React",
+    "description": "Это описание карточки, которое обрезается при колличестве символовболее 200.Lorem ipsum dolor sit amet, consectetur adipisicing elit.Aspernatur cupiditate delectus deserunt distinctio dolore, ea eligendiesse labore libero, maiores minus natus omnis praesentium quibusdamquis quo reiciendis sequi ullam."
+  },
+  "1": {
+    "id": "002",
+    "title": "Это длинное название, обрезающееся при колличестве символов > 30",
+    "description": "Короткое описание карточки"
+  },
+  "2": {
+    "id": "003",
+    "title": "Сделать статистику о потраченных часах",
+    "description": "Добавить статичтику о потраченных часах за неделю"
+  },
+  "3": {
+    "id": "004",
+    "title": "Список покупок",
+    "description": "Хлеб, яйца, курица"
+  }
+}

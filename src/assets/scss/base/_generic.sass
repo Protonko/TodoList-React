@@ -1,0 +1,28 @@
+html
+    box-sizing: border-box
+    -ms-overflow-style: scrollbar
+
+*,
+::after,
+::before
+    box-sizing: inherit
+
+
+.container
+    width: 100%
+    padding-right: 15px
+    padding-left: 15px
+    margin-right: auto
+    margin-left: auto
+
+    @media #{$screen-min-sm}
+        max-width: 540px
+
+    @media #{$screen-min-md}
+        max-width: 720px
+
+    @media #{$screen-min-lg}
+        max-width: 960px
+
+    @media #{$screen-min-xl}
+        max-width: 1140px
