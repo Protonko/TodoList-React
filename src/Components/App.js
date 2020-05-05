@@ -3,10 +3,12 @@ import Navbar from '@Components/Navbar/Navbar';
 import AddTodoCard from '@Components/AddTodoCard/AddTodoCard';
 import TodoList from '@Components/TodoList/TodoList';
 import LoaderCat from '@Components/SvgIcons/LoaderCat';
+import Modal from '@Components/Modal/Modal';
 
 function App() {
     const [todos, setTodo] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [isOpenModal, setOpenModal] = useState(false);
 
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/todos?_limit=5')
@@ -29,6 +31,10 @@ function App() {
         ]))
     }
 
+    function modalShow() {
+        setOpenModal(true)
+    }
+
   return (
     <div className="App">
       <header className="header">
@@ -39,9 +45,12 @@ function App() {
               <AddTodoCard addTodo={addTodo} />
               {loading
                  ? <LoaderCat />
-                 : <TodoList todos={todos} />
+                 : <TodoList todos={todos} modalShow={modalShow} />
               }
           </div>
+          {isOpenModal && (
+              <Modal />
+          )}
       </main>
     </div>
   );

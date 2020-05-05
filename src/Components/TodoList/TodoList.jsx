@@ -14,6 +14,7 @@ function TodoList(props) {
                         title={elem.title}
                         description={elem.description}
                         key={elem.id}
+                        modalShow={props.modalShow}
                     />
                 ))}
             </div>

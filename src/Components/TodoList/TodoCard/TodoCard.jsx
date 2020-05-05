@@ -27,7 +27,7 @@ function TodoCard(props) {
                 {description}
             </div>
             <div className="todo-card__button-container">
-                <button className="button button--cicrle">
+                <button className="button button--cicrle" onClick={props.modalShow}>
                     <svg className="icon--square_15 icon--red">
                         <use xlinkHref={editIcon}></use>
                     </svg>
