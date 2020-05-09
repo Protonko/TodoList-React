@@ -1,10 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 function Modal(props) {
     const todoCard = props.todo;
+    const [isClosing, setClosing] = useState(false);
+    const fadeOutModal = isClosing ? 'modal__overlay fade-out' : 'modal__overlay fade-in';
+
+    function closeModal(event) {
+        if (!event.target.closest('.modal-area'))
+        setClosing(true);
+        setTimeout(() => props.modalShow(false), 200);
+    }
+
     return (
-        <div className="modal__overlay" onClick={() => props.modalShow(false)}>
-            <div className="modal-area">
+        <div className={fadeOutModal} onClick={closeModal}>
+            <div className="modal-area slide-down">
                 <h2 className="modal-area__title">
                     {todoCard.title}
                 </h2>

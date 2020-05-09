@@ -1,0 +1,22 @@
+.fade-out
+    animation-name: fadeOut
+    animation-duration: .3s
+
+.fade-in
+    animation-name: fadeIn
+    animation-duration: .3s
+
+.slide-down
+    animation-name: slideDown
+    animation-duration: .5s
+
+
+@keyframes slideDown
+    @include slide(0, -50%, -50%, 1, -50%, 0)
+
+@keyframes fadeIn
+    @include fade(0, 1)
+
+
+@keyframes fadeOut
+    @include fade(1, 0)

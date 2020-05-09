@@ -25,11 +25,13 @@ function App() {
     function addTodo(title) {
         setTodo(todos.concat([
             {
+                id: todos.length + 1,
                 title,
                 body: 'Write description here',
-                id: Date.now()
             }
         ]))
+
+        console.log(todos)
     }
 
     function modalShow(id) {
