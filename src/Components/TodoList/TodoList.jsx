@@ -12,9 +12,11 @@ function TodoList(props) {
                 {todos.map(elem => (
                     <TodoCard
                         title={elem.title}
-                        description={elem.description}
+                        description={elem.body}
                         key={elem.id}
                         modalShow={props.modalShow}
+                        id={elem.id}
+                        setCardId={props.setCardId}
                     />
                 ))}
             </div>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import editIcon from '@/assets/icons/svg/pencil.svg'
+import editIcon from '@/assets/icons/svg/pencil.svg';
+import viewIcon from '@/assets/icons/svg/eye.svg';
 
 function TodoCard(props) {
     const [title, cropTitle] = useState(props.title);
@@ -14,11 +15,11 @@ function TodoCard(props) {
         const title = props.title;
 
         if (title.length > size.title) cropTitle(title.slice(0, size.title) + '...');
-        //if (description.length > size.description) cropDescription(description.slice(0, size.description) + '...');
+        if (description.length > size.description) cropDescription(description.slice(0, size.description) + '...');
     }, []);
 
     return (
-        <article className="todo-card">
+        <article className="todo-card" id={props.id}>
             <div className="todo-card__border" />
             <h6 className="todo-card__title">
                 {title}
@@ -27,9 +28,14 @@ function TodoCard(props) {
                 {description}
             </div>
             <div className="todo-card__button-container">
-                <button className="button button--cicrle" onClick={props.modalShow}>
+                <button className="button button--cicrle" onClick={() => props.modalShow(props.id)}>
                     <svg className="icon--square_15 icon--red">
                         <use xlinkHref={editIcon}></use>
+                    </svg>
+                </button>
+                <button className="button button--cicrle" onClick={() => props.modalShow(props.id)}>
+                    <svg className="icon--square_15 icon--red">
+                        <use xlinkHref={viewIcon}></use>
                     </svg>
                 </button>
             </div>

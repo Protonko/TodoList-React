@@ -5,7 +5,7 @@
     min-height: $min-height-card
     margin-bottom: rem(30px)
     padding: rem(20px)
-    cursor: pointer
+    cursor: default
     transition: padding-bottom .3s
     border-radius: rem(8px)
     background-color: $white
@@ -15,7 +15,7 @@
         margin-right: 2%
 
     &:hover
-        padding-bottom: rem(40px)
+        padding-bottom: rem(56px)
 
         .todo-card__border
             transform: scale(1.04)
@@ -46,7 +46,13 @@
 
     &__button-container
         position: absolute
-        right: rem(20px)
-        bottom: rem(20px)
+        right: rem(10px)
+        bottom: rem(10px)
         opacity: 0
         transition: .3s opacity
+
+        .button
+            cursor: pointer
+
+            &:first-child
+                margin-right: rem(10px)

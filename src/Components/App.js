@@ -9,9 +9,10 @@ function App() {
     const [todos, setTodo] = useState([]);
     const [loading, setLoading] = useState(true);
     const [isOpenModal, setOpenModal] = useState(false);
+    const [cardId, setCardId] = useState(0);
 
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/todos?_limit=5')
+        fetch('https://jsonplaceholder.typicode.com/users/1/posts?_limit=5')
             .then(response => response.json())
             .then(todos => {
                 setTimeout(() => {
@@ -25,35 +26,37 @@ function App() {
         setTodo(todos.concat([
             {
                 title,
-                description: 'Write description here',
+                body: 'Write description here',
                 id: Date.now()
             }
         ]))
     }
 
-    function modalShow() {
-        setOpenModal(true)
+    function modalShow(id) {
+        isOpenModal
+            ? setOpenModal(false)
+            : setOpenModal(true);
+        setCardId(id);
     }
-
-  return (
-    <div className="App">
-      <header className="header">
-          <Navbar />
-      </header>
-      <main>
-          <div className="container">
-              <AddTodoCard addTodo={addTodo} />
-              {loading
-                 ? <LoaderCat />
-                 : <TodoList todos={todos} modalShow={modalShow} />
-              }
-          </div>
-          {isOpenModal && (
-              <Modal />
-          )}
-      </main>
-    </div>
-  );
+    return (
+        <div className="App">
+            <header className="header">
+                <Navbar/>
+            </header>
+            <main>
+                <div className="container">
+                    <AddTodoCard addTodo={addTodo}/>
+                    {loading
+                        ? <LoaderCat/>
+                        : <TodoList todos={todos} modalShow={modalShow}/>
+                    }
+                </div>
+                {isOpenModal && (
+                    <Modal modalShow={modalShow} todo={todos[cardId - 1]}/>
+                )}
+            </main>
+        </div>
+    );
 }
 
 export default App;
