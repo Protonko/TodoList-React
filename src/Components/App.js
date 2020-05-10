@@ -33,10 +33,16 @@ function App() {
         ]))
     }
 
+    function changeTodo(position, editedCard) {
+        todos.splice(position, 1, editedCard); // position = integer; editCard = {}
+        setTodo(todos);
+    }
+
     function modalShow(id) {
         setOpenModal(!isOpenModal);
         setCardId(id);
     }
+
     return (
         <div className="App">
             <header className="header">
@@ -59,6 +65,7 @@ function App() {
                         modalShow={modalShow}
                         editMode={editMode}
                         todo={todos[cardId - 1]}
+                        changeTodo={changeTodo}
                     />
                 )}
             </main>
