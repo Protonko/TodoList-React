@@ -2,6 +2,7 @@ const path = require('path');
 const autoprefixer = require('autoprefixer');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const isDev = process.env.NODE_ENV === 'development'; // Check mode
@@ -61,6 +62,12 @@ const plugins = () => {
             plainSprite: true
         }),
         new CleanWebpackPlugin(),
+        new CopyWebpackPlugin([
+            {
+                from: path.resolve(__dirname, 'src/assets/icons/favicon.ico'),
+                to: path.resolve(__dirname, 'dist'),
+            }
+        ]),
     ];
 
     return base;
@@ -107,7 +114,7 @@ module.exports = {
                 use: ['file-loader']
             },
             {
-                test: /\.(jp?g|png|gif)$/,
+                test: /\.(jp?g|png|gif|ico)$/,
                 use: ['file-loader']
             },
             {
