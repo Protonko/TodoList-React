@@ -1,7 +1,5 @@
 import React from 'react';
-
 import TodoCard from '@Components/TodoList/TodoCard/TodoCard';
-import { CARD_TEXT } from '@/static/data-objects';
 
 function TodoList(props) {
     const todos = props.todos;
@@ -17,6 +15,7 @@ function TodoList(props) {
                         modalShow={props.modalShow}
                         id={elem.id}
                         setCardId={props.setCardId}
+                        setEditMode={props.setEditMode}
                     />
                 ))}
             </div>

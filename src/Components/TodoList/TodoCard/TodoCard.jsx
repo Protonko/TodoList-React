@@ -6,7 +6,14 @@ function TodoCard(props) {
     const [title, cropTitle] = useState(props.title);
     const [description, cropDescription] = useState(props.description);
 
-    useEffect(() => {
+    useEffect(() => cropText(), []);
+
+    function showModalWithParams(isEdit) { // isEdit = true || false
+        props.modalShow(props.id);
+        props.setEditMode(isEdit);
+    }
+
+    function cropText() {
         const size = {
             title: 30,
             description: 200,
@@ -16,7 +23,7 @@ function TodoCard(props) {
 
         if (title.length > size.title) cropTitle(title.slice(0, size.title) + '...');
         if (description.length > size.description) cropDescription(description.slice(0, size.description) + '...');
-    }, []);
+    }
 
     return (
         <article className="todo-card" id={props.id}>
@@ -28,12 +35,18 @@ function TodoCard(props) {
                 {description}
             </div>
             <div className="todo-card__button-container">
-                <button className="button button--cicrle" onClick={() => props.modalShow(props.id)}>
+                <button
+                    className="button button--cicrle"
+                    onClick={() => showModalWithParams(true)}
+                >
                     <svg className="icon--square_15 icon--red">
                         <use xlinkHref={editIcon}></use>
                     </svg>
                 </button>
-                <button className="button button--cicrle" onClick={() => props.modalShow(props.id)}>
+                <button
+                    className="button button--cicrle"
+                    onClick={() => showModalWithParams(false)}
+                >
                     <svg className="icon--square_15 icon--red">
                         <use xlinkHref={viewIcon}></use>
                     </svg>

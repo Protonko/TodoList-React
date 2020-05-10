@@ -9,6 +9,7 @@ function App() {
     const [todos, setTodo] = useState([]);
     const [loading, setLoading] = useState(true);
     const [isOpenModal, setOpenModal] = useState(false);
+    const [editMode, setEditMode] = useState(false);
     const [cardId, setCardId] = useState(0);
 
     useEffect(() => {
@@ -18,7 +19,7 @@ function App() {
                 setTimeout(() => {
                     setLoading(false);
                     setTodo(todos);
-                }, 2000)
+                }, 1000)
             })
     }, []);
 
@@ -30,14 +31,10 @@ function App() {
                 body: 'Write description here',
             }
         ]))
-
-        console.log(todos)
     }
 
     function modalShow(id) {
-        isOpenModal
-            ? setOpenModal(false)
-            : setOpenModal(true);
+        setOpenModal(!isOpenModal);
         setCardId(id);
     }
     return (
@@ -50,11 +47,19 @@ function App() {
                     <AddTodoCard addTodo={addTodo}/>
                     {loading
                         ? <LoaderCat/>
-                        : <TodoList todos={todos} modalShow={modalShow}/>
+                        : <TodoList
+                            todos={todos}
+                            setEditMode={setEditMode}
+                            modalShow={modalShow}
+                        />
                     }
                 </div>
                 {isOpenModal && (
-                    <Modal modalShow={modalShow} todo={todos[cardId - 1]}/>
+                    <Modal
+                        modalShow={modalShow}
+                        editMode={editMode}
+                        todo={todos[cardId - 1]}
+                    />
                 )}
             </main>
         </div>

@@ -1,37 +1,38 @@
 import React, {useState} from 'react';
+import Checkbox from '@Components/Checkbox/Checkbox';
 
 function Modal(props) {
     const todoCard = props.todo;
     const [isClosing, setClosing] = useState(false);
-    const fadeOutModal = isClosing ? 'modal__overlay fade-out' : 'modal__overlay fade-in';
+    const animateModal = isClosing ? 'modal__overlay fade-out' : 'modal__overlay fade-in';
+    console.log(props.editMode)
 
     function closeModal(event) {
-        if (!event.target.closest('.modal-area'))
+        if (event.target.closest('.modal-area')) return;
         setClosing(true);
         setTimeout(() => props.modalShow(false), 200);
     }
 
     return (
-        <div className={fadeOutModal} onClick={closeModal}>
+        <div className={animateModal} onClick={closeModal}>
             <div className="modal-area slide-down">
-                <h2 className="modal-area__title">
+                <h2 className="modal-area__title"
+                    contentEditable={props.editMode}
+                    suppressContentEditableWarning={true}
+                >
                     {todoCard.title}
                 </h2>
 
                 <div className="modal-area__body">
-                    <p className="modal-area__descr">
+                    <p className="modal-area__descr"
+                       contentEditable={props.editMode}
+                       suppressContentEditableWarning={true}
+                    >
                         {todoCard.body}
                     </p>
                     <div className="modal-area__checkbox-wrapper">
-                        <label className="checkbox modal-area__checkbox-single">
-                            <input className="checkbox__input" type="checkbox" name="checkbox" />
-                            <span className="checkbox__text">Молоко</span>
-                        </label>
-
-                        <label className="checkbox modal-area__checkbox-single">
-                            <input className="checkbox__input" type="checkbox" name="checkbox" />
-                            <span className="checkbox__text">Хлеб</span>
-                        </label>
+                        <Checkbox title="Молоко" />
+                        <Checkbox title="Хлеб" />
                     </div>
                 </div>
 
