@@ -1,16 +1,20 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
-import Checkbox from '@Components/Checkbox/Checkbox';
+import Checkbox from '@Components/Common/Checkbox';
+import ButtonText from '@Components/Common/Buttons/ButtonText';
+import ButtonAppend from '@Components/Common/Buttons/ButtonAppend';
 
 function Modal(props) {
+    const isEdit = props.editMode;
     const todoCard = props.todo;
+    const checkboxes = todoCard.checkboxes;
     const [isClosing, setClosing] = useState(false);
     const [titleCard, setTitleCard] = useState(todoCard.title);
+    const [descriptionCard, setDescriptionCard] = useState(todoCard.body);
+    const [countCheckboxes, setCountCheckboxes] = useState(checkboxes.length);
     const refTitle = useRef(todoCard.title);
     const refDescription = useRef(todoCard.description);
-    const [descriptionCard, setDescriptionCard] = useState(todoCard.body);
     const animateModal = isClosing ? 'modal__overlay fade-out' : 'modal__overlay fade-in';
-    const isEdit = props.editMode;
 
     function closeModal(event) {
         if (!event.target.closest('.button--save')
@@ -21,20 +25,25 @@ function Modal(props) {
     }
 
     function saveChanges(event) {
-        event.preventDefault();
         const position = todoCard.id - 1;
         const cardParams = {
             id: todoCard.id,
             title: refTitle.current.innerText,
             body: refDescription.current.innerText,
+            checkboxes: checkboxes,
         };
         closeModal(event);
         props.changeTodo(position, cardParams);
     }
 
+    function handleAppendCheckbox() {
+        props.appendCheckbox(checkboxes);
+        setCountCheckboxes(countCheckboxes + 1)
+    }
+
     return (
         <div className={animateModal} onClick={closeModal}>
-            <form className="modal-area slide-down" onSubmit={saveChanges}>
+            <div className="modal-area slide-down">
                 <h2 className="modal-area__title"
                     contentEditable={isEdit}
                     suppressContentEditableWarning={true}
@@ -58,22 +67,38 @@ function Modal(props) {
                         >
                             {descriptionCard}
                         </p>
-                        <div className="modal-area__checkbox-wrapper">
-                            <Checkbox title="Молоко" />
-                            <Checkbox title="Хлеб" />
+
+                        <div className="modal-area__block">
+                            <div className="modal-area__checkbox-wrapper">
+                                {checkboxes.map((elem, index) => (
+                                    <Checkbox
+                                        key={checkboxes[index].title + Math.random()}
+                                        className="modal-area__checkbox-single"
+                                        title={checkboxes[index].title}
+                                        isEdit={isEdit}
+                                        checkboxSingle={checkboxes[index]}
+                                        />
+                                ))}
+                            </div>
+
+                            {isEdit &&
+                                <ButtonAppend title="Add new task" handleClick={handleAppendCheckbox} />
+                            }
                         </div>
+
                     </div>
                 </Scrollbars>
 
                 {isEdit &&
                     <div className="button__container">
-                        <button className="button button--save">
-                            Save
-                        </button>
+                        <ButtonText
+                            text="Save"
+                            handleClick={saveChanges}
+                        />
                     </div>
                 }
 
-            </form>
+            </div>
         </div>
     )
 }

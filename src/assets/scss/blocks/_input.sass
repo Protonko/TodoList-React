@@ -2,14 +2,23 @@
     padding: rem(10px)
     transition: .5s border-color
     outline: none
-    border: rem(1px) solid $rose-pig
-    border-radius: rem(8px) 0 0 rem(8px)
 
-    &:hover
-        border-color: rgba($amaranth, .3)
+    &--add
+        border: rem(1px) solid $rose-pig
+        border-radius: rem(8px) 0 0 rem(8px)
 
-    &:focus
+        &:hover
+            border-color: rgba($amaranth, .3)
+
+        &:focus
+            border-color: $amaranth
+
+        &::placeholder
+            color: rgba($red-fire-engine, .5)
+
+    &--edit
+        width: 100%
+        padding: rem(5px)
+        border-width:  0 0 rem(1px) 0
         border-color: $amaranth
-
-    &::placeholder
-        color: rgba($red-fire-engine, .5)
+        background-color: transparent

@@ -1,18 +1,18 @@
 import React from 'react';
 import NavbarItem from './NavbarItem';
-import { NAVBAR_ITEMS } from '@/static/data-objects';
 
-function Navbar() {
+function Navbar(props) {
+    const navbarItems = props.navbarItems;
     return (
         <div className="container">
             <nav className="navbar">
                 <ul className="navbar__list">
-                    {Object.values(NAVBAR_ITEMS).map((elem, index) => {
+                    {navbarItems.map((elem, index) => {
                         return (
                             <NavbarItem
-                                key={elem + index}
-                                title={elem}
-                                link={elem}
+                                key={elem.title + index}
+                                title={elem.title}
+                                link={elem.link}
                             />
                         )
                     })}

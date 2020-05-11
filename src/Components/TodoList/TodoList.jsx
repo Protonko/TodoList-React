@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import TodoCard from '@Components/TodoList/TodoCard/TodoCard';
 
 function TodoList(props) {

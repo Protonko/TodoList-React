@@ -35,11 +35,17 @@
         &__descr
             line-height: 120%
             margin-bottom: rem(20px)
+            padding: rem(2px)
             color: $text-color
             outline-color: $amaranth
 
         &__checkbox
 
             &-single
+                &:not(:last-child)
+                    margin-bottom: rem(5px)
+
+            &-wrapper
+
                 &:not(:last-child)
                     margin-bottom: rem(5px)

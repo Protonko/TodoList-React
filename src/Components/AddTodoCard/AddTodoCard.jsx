@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import addIcon from '@/assets/icons/svg/plus.svg';
+import ButtonAdd from '@Components/Common/Buttons/ButtonAdd';
+import InputAdd from '@Components/Common/InputAdd';
 
 // Create hook to watch input value and reset
 function useInputValue(defaultValue = '') {
@@ -28,13 +29,11 @@ function AddTodoCard(props) {
     }
     return (
         <form className="add-todo" onSubmit={submitHandler}>
-            <input {...input.bind} className="input add-todo__input" placeholder="Write title here..." type="text"/>
-            <button className="button button--add add-todo__button">
-                <svg className="icon--square_10 icon--red add-todo__button-icon">
-                    <use xlinkHref={addIcon}></use>
-                </svg>
-                <span className="add-todo__button-text">Add</span>
-            </button>
+            <InputAdd
+                params={input.bind}
+                placeholder="Write title here..."
+            />
+            <ButtonAdd />
         </form>
     )
 }

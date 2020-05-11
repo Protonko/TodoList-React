@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import editIcon from '@/assets/icons/svg/pencil.svg';
-import viewIcon from '@/assets/icons/svg/eye.svg';
+import ButtonEdit from '@Components/Common/Buttons/ButtonEdit';
+import ButtonView from '@Components/Common/Buttons/ButtonView';
 
 function TodoCard(props) {
     const [cropTitle, setCropTitle] = useState(props.title);
@@ -35,27 +35,13 @@ function TodoCard(props) {
             <h6 className="todo-card__title">
                 {cropTitle}
             </h6>
-            <div className="todo-card__descr">
+            <p className="todo-card__descr">
                 {cropDescription}
-            </div>
+            </p>
             <div className="todo-card__button-container">
-                <button
-                    className="button button--cicrle"
-                    onClick={() => showModalWithParams(true)}
-                >
-                    <svg className="icon--square_15 icon--red">
-                        <use xlinkHref={editIcon}></use>
-                    </svg>
-                </button>
-                <button
-                    className="button button--cicrle"
-                    onClick={() => showModalWithParams(false)}
-                >
-                    <svg className="icon--square_15 icon--red">
-                        <use xlinkHref={viewIcon}></use>
-                    </svg>
-                </button>
-            </div>
+                <ButtonEdit handleClick={() => showModalWithParams(true)} />
+                <ButtonView  handleClick={() => showModalWithParams(false)} />
+        </div>
         </article>
     )
 }

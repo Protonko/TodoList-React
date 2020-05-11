@@ -1,12 +1,21 @@
-export const NAVBAR_ITEMS = {
-    author: 'Egor Ermolaev',
-    title: 'Todo list',
-    email: 'probegrofanston@mail.ru',
-}
+export const NAVBAR_ITEMS = [
+    {
+        title: 'Egor Ermolaev',
+        link: 'http://egorermolaev.ru',
+    },
+    {
+        title: 'Todo list',
+        link: '#',
+    },
+    {
+        title: 'probegrofanston@mail.ru',
+        link: 'mailto:probegrofanston@mail.ru',
+    },
+]
 
 export const CARD_TEXT = [
     {
-        id: '001',
+        id: '1',
         title: 'Сделать Todo List на React',
         description: `
             Это описание карточки, которое обрезается при колличестве символов
@@ -17,17 +26,17 @@ export const CARD_TEXT = [
             quis quo reiciendis sequi ullam.`
     },
     {
-        id: '002',
+        id: '2',
         title: 'Это длинное название, обрезающееся при колличестве символов > 30',
         description: 'Короткое описание карточки'
     },
     {
-        id: '003',
+        id: '3',
         title: 'Сделать статистику о потраченных часах',
         description: 'Добавить статичтику о потраченных часах за неделю'
     },
     {
-        id: '004',
+        id: '4',
         title: 'Список покупок',
         description: 'Хлеб, яйца, курица'
     },

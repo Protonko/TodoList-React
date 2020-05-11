@@ -26,16 +26,19 @@
 
     &__text
         position: relative
-        padding-left: rem(25px)
+        padding: rem(2px) rem(2px) rem(2px) rem(25px)
         color: $text-color
+        outline-color: $amaranth
 
         &::before
             position: absolute
+            top: 50%
             display: block
             width: rem(15px)
             min-width: rem(15px)
             height: rem(15px)
             content: ''
             transition: .3s all
+            transform: translateY(-50%)
             border: rem(1px) solid $text-color
             border-radius: rem(3px)
