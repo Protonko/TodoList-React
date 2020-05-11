@@ -1,4 +1,5 @@
 import React, {useRef, useState} from 'react';
+import { Scrollbars } from 'react-custom-scrollbars';
 import Checkbox from '@Components/Checkbox/Checkbox';
 
 function Modal(props) {
@@ -42,19 +43,27 @@ function Modal(props) {
                     {titleCard}
                 </h2>
 
-                <div className="modal-area__body">
-                    <p className="modal-area__descr"
-                       contentEditable={isEdit}
-                       suppressContentEditableWarning={true}
-                       ref={refDescription}
-                    >
-                        {descriptionCard}
-                    </p>
-                    <div className="modal-area__checkbox-wrapper">
-                        <Checkbox title="Молоко" />
-                        <Checkbox title="Хлеб" />
+                <Scrollbars autoHide
+                            autoHeight
+                            autoHideDuration={500}
+                            autoHeightMin={0}
+                            autoHeightMax={250}
+                            renderThumbVertical={props => <div {...props} className="scroll__thumb-vertical"/>}
+                >
+                    <div className="modal-area__body">
+                        <p className="modal-area__descr"
+                           contentEditable={isEdit}
+                           suppressContentEditableWarning={true}
+                           ref={refDescription}
+                        >
+                            {descriptionCard}
+                        </p>
+                        <div className="modal-area__checkbox-wrapper">
+                            <Checkbox title="Молоко" />
+                            <Checkbox title="Хлеб" />
+                        </div>
                     </div>
-                </div>
+                </Scrollbars>
 
                 {isEdit &&
                     <div className="button__container">

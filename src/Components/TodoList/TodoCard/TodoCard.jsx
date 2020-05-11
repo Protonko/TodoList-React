@@ -25,8 +25,8 @@ function TodoCard(props) {
         const description = props.description;
         const title = props.title;
 
-        if (title.length > size.title) setCropTitle(cropTitle.slice(0, size.title) + '...');
-        if (description.length > size.description) setCropDescription(cropDescription.slice(0, size.description) + '...');
+        if (title.length > size.title) setCropTitle(props.title.slice(0, size.title) + '...');
+        if (description.length > size.description) setCropDescription(props.description.slice(0, size.description) + '...');
     }
 
     return (
