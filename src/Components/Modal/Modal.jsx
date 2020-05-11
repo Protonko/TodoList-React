@@ -1,8 +1,10 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useState} from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import Checkbox from '@Components/Common/Checkbox';
 import ButtonText from '@Components/Common/Buttons/ButtonText';
 import ButtonAppend from '@Components/Common/Buttons/ButtonAppend';
+import Description from '@Components/Modal/Description';
+import Title from '@Components/Modal/Title';
 
 function Modal(props) {
     const isEdit = props.editMode;
@@ -12,8 +14,6 @@ function Modal(props) {
     const [titleCard, setTitleCard] = useState(todoCard.title);
     const [descriptionCard, setDescriptionCard] = useState(todoCard.body);
     const [countCheckboxes, setCountCheckboxes] = useState(checkboxes.length);
-    const refTitle = useRef(todoCard.title);
-    const refDescription = useRef(todoCard.description);
     const animateModal = isClosing ? 'modal__overlay fade-out' : 'modal__overlay fade-in';
 
     function closeModal(event) {
@@ -28,8 +28,8 @@ function Modal(props) {
         const position = todoCard.id - 1;
         const cardParams = {
             id: todoCard.id,
-            title: refTitle.current.innerText,
-            body: refDescription.current.innerText,
+            title: titleCard,
+            body: descriptionCard,
             checkboxes: checkboxes,
         };
         closeModal(event);
@@ -44,45 +44,42 @@ function Modal(props) {
     return (
         <div className={animateModal} onClick={closeModal}>
             <div className="modal-area slide-down">
-                <h2 className="modal-area__title"
-                    contentEditable={isEdit}
-                    suppressContentEditableWarning={true}
-                    ref={refTitle}
-                >
-                    {titleCard}
-                </h2>
+                <Title
+                    isEdit={isEdit}
+                    text={titleCard}
+                    setTitleCard={setTitleCard}
+                />
 
-                <Scrollbars autoHide
-                            autoHeight
-                            autoHideDuration={500}
-                            autoHeightMin={0}
-                            autoHeightMax={250}
-                            renderThumbVertical={props => <div {...props} className="scroll__thumb-vertical"/>}
+                <Scrollbars
+                    autoHide
+                    autoHeight
+                    autoHideDuration={500}
+                    autoHeightMin={0}
+                    autoHeightMax={250}
+                    renderThumbVertical={props => <div {...props} className="scroll__thumb-vertical"/>}
                 >
                     <div className="modal-area__body">
-                        <p className="modal-area__descr"
-                           contentEditable={isEdit}
-                           suppressContentEditableWarning={true}
-                           ref={refDescription}
-                        >
-                            {descriptionCard}
-                        </p>
+                        <Description
+                            isEdit={isEdit}
+                            text={descriptionCard}
+                            setDescriptionCard={setDescriptionCard}
+                        />
 
                         <div className="modal-area__block">
                             <div className="modal-area__checkbox-wrapper">
                                 {checkboxes.map((elem, index) => (
                                     <Checkbox
-                                        key={checkboxes[index].title + Math.random()}
+                                        key={elem.title + elem.index}
                                         className="modal-area__checkbox-single"
-                                        title={checkboxes[index].title}
+                                        title={elem.title}
                                         isEdit={isEdit}
-                                        checkboxSingle={checkboxes[index]}
-                                        />
+                                        checkboxSingle={elem}
+                                    />
                                 ))}
                             </div>
 
                             {isEdit &&
-                                <ButtonAppend title="Add new task" handleClick={handleAppendCheckbox} />
+                                <ButtonAppend text="Add new task" handleClick={handleAppendCheckbox} />
                             }
                         </div>
 
@@ -91,10 +88,7 @@ function Modal(props) {
 
                 {isEdit &&
                     <div className="button__container">
-                        <ButtonText
-                            text="Save"
-                            handleClick={saveChanges}
-                        />
+                        <ButtonText text="Save" handleClick={saveChanges} />
                     </div>
                 }
 

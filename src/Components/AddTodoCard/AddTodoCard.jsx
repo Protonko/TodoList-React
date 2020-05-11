@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ButtonAdd from '@Components/Common/Buttons/ButtonAdd';
-import InputAdd from '@Components/Common/InputAdd';
+import InputAdd from '@Components/Common/Inputs/InputAdd';
 
 // Create hook to watch input value and reset
 function useInputValue(defaultValue = '') {

@@ -1,13 +1,16 @@
-import React, {useState} from 'react';
-import InputEdit from '@Components/Common/InputEdit';
+import React, {useEffect, useState} from 'react';
+import InputEdit from '@Components/Common/Inputs/InputEdit';
 
 function Checkbox(props) {
-    const [value, setValue] = useState(props.title);
+    const [valueCheckbox, setValueCheckbox] = useState(props.title);
     const checkboxSingle = props.checkboxSingle;
 
+    useEffect(() => {
+        checkboxSingle.title = valueCheckbox;
+    }, [valueCheckbox]);
+
     function handleChange(event) {
-        setValue(event.target.value);
-        checkboxSingle.title = value;
+        setValueCheckbox(event.target.value);
     }
 
     return (

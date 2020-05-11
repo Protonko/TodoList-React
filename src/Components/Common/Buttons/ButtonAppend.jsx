@@ -9,7 +9,7 @@ function ButtonAppend(props) {
                 <use xlinkHref={addIcon}></use>
             </svg>
             <span className="add-todo__button-text">
-                {props.title}
+                {props.text}
             </span>
         </button>
     )
