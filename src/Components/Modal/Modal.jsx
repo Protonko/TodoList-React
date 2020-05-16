@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
-import Checkbox from '@Components/Common/Checkbox';
+import Checkbox from '@Components/Checkbox/Checkbox';
 import ButtonText from '@Components/Common/Buttons/ButtonText';
 import ButtonAppend from '@Components/Common/Buttons/ButtonAppend';
 import Description from '@Components/Modal/Description';
 import Title from '@Components/Modal/Title';
-import {func} from 'prop-types';
 
 function Modal(props) {
     const isEdit = props.editMode;
@@ -39,17 +38,19 @@ function Modal(props) {
 
     function handleAppendCheckbox() {
         props.appendCheckbox(checkboxes);
-        setCountCheckboxes(countCheckboxes + 1) // for rerender
+        setCountCheckboxes(countCheckboxes + 1); // for rerender
     }
 
     function handleRemoveCheckbox(position) {
         props.removeCheckbox(checkboxes, position);
-        setCountCheckboxes(countCheckboxes + 1) // for rerender
+        setCountCheckboxes(countCheckboxes + 1); // for rerender
     }
 
     function handleComplete(checkbox) {
         const isCompleted = checkbox.completed;
 
+        checkbox.completed = !isCompleted;
+        setCountCheckboxes(countCheckboxes + 1); // for rerender
     }
 
     return (

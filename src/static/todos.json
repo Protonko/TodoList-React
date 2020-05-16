@@ -24,14 +24,17 @@
     "body": "Это карточка с чекбоксами",
     "checkboxes": [
       {
+        "id": "c-1",
         "title": "Eggs",
         "completed": false
       },
       {
+        "id": "c-2",
         "title": "Milk",
         "completed": false
       },
       {
+        "id": "c-3",
         "title": "Bread",
         "completed": false
       }

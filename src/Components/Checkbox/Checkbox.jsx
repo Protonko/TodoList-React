@@ -15,11 +15,6 @@ function Checkbox(props) {
 
     return (
         <label className={`checkbox ${props.className}`} data-checkbox-id={props.id}>
-            <input className="checkbox__input"
-                   type="checkbox"
-                   name="checkbox"
-                   onChange={() => props.handleComplete(checkboxSingle)}
-            />
             {props.isEdit
                 ? (
                     <Fragment>
@@ -33,7 +28,17 @@ function Checkbox(props) {
                         </a>
                     </Fragment>
                 )
-                : <span className="checkbox__text">{props.title}</span>
+                : (
+                    <Fragment>
+                        <input className="checkbox__input"
+                               type="checkbox"
+                               name="checkbox"
+                               checked={checkboxSingle.completed}
+                               onChange={() => props.handleComplete(checkboxSingle)}
+                        />
+                        <span className="checkbox__text">{props.title}</span>
+                    </Fragment>
+                )
             }
         </label>
     )

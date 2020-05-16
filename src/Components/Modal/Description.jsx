@@ -2,7 +2,7 @@ import React, {Fragment, useEffect, useState} from 'react';
 import Textarea from '@Components/Common/Inputs/Textarea';
 
 function Description(props) {
-    const MIN_HEIGHT = 100;
+    const MIN_HEIGHT = 105;
     const [currentHeight, setCurrentHeight] = useState(MIN_HEIGHT);
 
     function handleChange(event) {

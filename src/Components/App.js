@@ -4,6 +4,7 @@ import AddTodoCard from '@Components/AddTodoCard/AddTodoCard';
 import TodoList from '@Components/TodoList/TodoList';
 import LoaderCat from '@Components/Common/SvgIcons/LoaderCat';
 import Modal from '@Components/Modal/Modal';
+import {func} from 'prop-types';
 
 function App() {
     const [todos, setTodo] = useState([]);
@@ -52,11 +53,6 @@ function App() {
 
     function removeCheckbox(arr, position) {
         arr.splice(position, 1); // position = integer
-        console.log(position)
-    }
-
-    function completeCheckboxToggle(arr, checkbox, position) {
-        //arr.splice(position, 1, checkbox); // position = integer
     }
 
     return (
