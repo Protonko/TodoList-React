@@ -44,7 +44,19 @@ function App() {
     }
 
     function appendCheckbox(arr) {
-        arr.push({title: 'Write text here', completed: false});
+        arr.push({
+            title: 'Write text here',
+            completed: false
+        });
+    }
+
+    function removeCheckbox(arr, position) {
+        arr.splice(position, 1); // position = integer
+        console.log(position)
+    }
+
+    function completeCheckboxToggle(arr, checkbox, position) {
+        //arr.splice(position, 1, checkbox); // position = integer
     }
 
     return (
@@ -69,6 +81,7 @@ function App() {
                         todo={todos[cardId - 1]}
                         changeTodo={changeTodo}
                         appendCheckbox={appendCheckbox}
+                        removeCheckbox={removeCheckbox}
                     />
                 )}
             </main>

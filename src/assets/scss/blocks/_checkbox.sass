@@ -1,4 +1,5 @@
 .checkbox
+    position: relative
     display: block
     width: 100%
     padding: rem(10px)
@@ -42,3 +43,10 @@
             transform: translateY(-50%)
             border: rem(1px) solid $text-color
             border-radius: rem(3px)
+
+    &__remove
+        position: absolute
+        top: rem(3px)
+        right: rem(5px)
+        text-decoration: none
+        color: $amaranth

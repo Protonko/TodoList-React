@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import InputEdit from '@Components/Common/Inputs/InputEdit';
 
 function Checkbox(props) {
@@ -14,10 +14,25 @@ function Checkbox(props) {
     }
 
     return (
-        <label className={`checkbox ${props.className}`}>
-            <input className="checkbox__input" type="checkbox" name="checkbox" />
+        <label className={`checkbox ${props.className}`} data-checkbox-id={props.id}>
+            <input className="checkbox__input"
+                   type="checkbox"
+                   name="checkbox"
+                   onChange={() => props.handleComplete(checkboxSingle)}
+            />
             {props.isEdit
-                ? <InputEdit title={props.title} handleChange={handleChange} />
+                ? (
+                    <Fragment>
+                        <InputEdit title={props.title} handleChange={handleChange} />
+                        <a className="checkbox__remove"
+                           href="#"
+                           title="Remove item"
+                           onClick={() => props.handleClickRemove(props.id)}
+                        >
+                            &times;
+                        </a>
+                    </Fragment>
+                )
                 : <span className="checkbox__text">{props.title}</span>
             }
         </label>

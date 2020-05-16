@@ -5,6 +5,7 @@ import ButtonText from '@Components/Common/Buttons/ButtonText';
 import ButtonAppend from '@Components/Common/Buttons/ButtonAppend';
 import Description from '@Components/Modal/Description';
 import Title from '@Components/Modal/Title';
+import {func} from 'prop-types';
 
 function Modal(props) {
     const isEdit = props.editMode;
@@ -38,7 +39,17 @@ function Modal(props) {
 
     function handleAppendCheckbox() {
         props.appendCheckbox(checkboxes);
-        setCountCheckboxes(countCheckboxes + 1)
+        setCountCheckboxes(countCheckboxes + 1) // for rerender
+    }
+
+    function handleRemoveCheckbox(position) {
+        props.removeCheckbox(checkboxes, position);
+        setCountCheckboxes(countCheckboxes + 1) // for rerender
+    }
+
+    function handleComplete(checkbox) {
+        const isCompleted = checkbox.completed;
+
     }
 
     return (
@@ -56,7 +67,7 @@ function Modal(props) {
                     autoHideDuration={500}
                     autoHeightMin={0}
                     autoHeightMax={250}
-                    renderThumbVertical={props => <div {...props} className="scroll__thumb-vertical"/>}
+                    renderThumbVertical={props => <div {...props} className="scroll__thumb-vertical" />}
                 >
                     <div className="modal-area__body">
                         <Description
@@ -69,11 +80,14 @@ function Modal(props) {
                             <div className="modal-area__checkbox-wrapper">
                                 {checkboxes.map((elem, index) => (
                                     <Checkbox
-                                        key={elem.title + elem.index}
+                                        key={Math.random()}
+                                        id={index}
                                         className="modal-area__checkbox-single"
                                         title={elem.title}
                                         isEdit={isEdit}
                                         checkboxSingle={elem}
+                                        handleClickRemove={handleRemoveCheckbox}
+                                        handleComplete={handleComplete}
                                     />
                                 ))}
                             </div>
