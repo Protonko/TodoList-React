@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import ButtonAdd from '@Components/Common/Buttons/ButtonAdd';
 import InputAdd from '@Components/Common/Inputs/InputAdd';
+import * as Constants from '@/static/constants';
 
 // Create hook to watch input value and reset
 function useInputValue(defaultValue = '') {
-    const [value, setValue] = useState(defaultValue)
+    const [value, setValue] = useState(defaultValue);
 
     return {
         bind: {
@@ -31,7 +32,7 @@ function AddTodoCard(props) {
         <form className="add-todo" onSubmit={submitHandler}>
             <InputAdd
                 params={input.bind}
-                placeholder="Write title here..."
+                placeholder={Constants.INPUT_ADD_PLACEHOLDER}
             />
             <ButtonAdd />
         </form>

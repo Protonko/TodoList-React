@@ -1,6 +1,5 @@
 import React, {Fragment} from 'react';
 import InputEdit from '@Components/Common/Inputs/InputEdit';
-import Textarea from '@Components/Common/Inputs/Textarea';
 
 function Title(props) {
 

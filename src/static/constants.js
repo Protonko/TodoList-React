@@ -1,0 +1,9 @@
+export const CREATED_CHECKBOX_TITLE = 'Write text here';
+export const CREATED_CARD_TITLE = 'Write description here';
+export const INPUT_ADD_PLACEHOLDER = 'Write title here...';
+export const APPEND_CHECKBOX_BUTTON_TITLE = 'Add new task';
+export const BUTTON_SAVE_TITLE = 'Save';
+export const BUTTON_REMOVE_TITLE = 'Remove';
+export const REMOVE_LINK_TITLE = 'Remove item';
+export const CLOSE_SYMBOL = '\u00D7';
+export const MIN_HEIGHT_TEXTAREA = 105;

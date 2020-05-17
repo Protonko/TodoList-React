@@ -1,13 +1,13 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import Textarea from '@Components/Common/Inputs/Textarea';
+import * as Constants from '@/static/constants';
 
 function Description(props) {
-    const MIN_HEIGHT = 105;
-    const [currentHeight, setCurrentHeight] = useState(MIN_HEIGHT);
+    const [currentHeight, setCurrentHeight] = useState(Constants.MIN_HEIGHT_TEXTAREA);
 
     function handleChange(event) {
         props.setDescriptionCard(event.target.value);
-        const currentHeight = event.target ? event.target.scrollHeight : MIN_HEIGHT;
+        const currentHeight = event.target ? event.target.scrollHeight : Constants.MIN_HEIGHT_TEXTAREA;
         setCurrentHeight(currentHeight)
     }
 

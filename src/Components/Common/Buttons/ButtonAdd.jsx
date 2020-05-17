@@ -1,5 +1,4 @@
 import React from 'react';
-
 import addIcon from '@/assets/icons/svg/plus.svg';
 
 function ButtonAdd() {

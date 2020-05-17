@@ -9,11 +9,11 @@ function TodoList(props) {
             <div className="todo-list-wrapper">
                 {todos.map(elem => (
                     <TodoCard
+                        key={Math.random() + elem.id}
+                        id={elem.id}
                         title={elem.title}
                         description={elem.body}
-                        key={elem.id}
                         modalShow={props.modalShow}
-                        id={elem.id}
                         setCardId={props.setCardId}
                         setEditMode={props.setEditMode}
                     />
