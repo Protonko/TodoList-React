@@ -14,7 +14,7 @@ function App() {
     const [cardId, setCardId] = useState(0);
 
     useEffect(() => {
-        fetch('http://egorermolaev.ru/todos.json')
+        fetch('https://egorermolaev.ru/todos.json')
             .then(response => response.json())
             .then(todos => {
                 setTimeout(() => {
