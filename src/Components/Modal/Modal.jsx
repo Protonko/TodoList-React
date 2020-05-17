@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import { Scrollbars } from 'react-custom-scrollbars';
+import {Scrollbars} from 'react-custom-scrollbars';
 import Checkbox from '@Components/Checkbox/Checkbox';
 import ButtonText from '@Components/Common/Buttons/ButtonText';
 import ButtonAppend from '@Components/Common/Buttons/ButtonAppend';
 import Description from '@Components/Modal/Description';
 import Title from '@Components/Modal/Title';
+import * as Constants from '@/static/constants';
 
 function Modal(props) {
     const isEdit = props.editMode;
@@ -53,6 +54,11 @@ function Modal(props) {
         setCountCheckboxes(countCheckboxes + 1); // for rerender
     }
 
+    function removeCard() {
+        const position = todoCard.id - 1;
+        props.removeTodo(position);
+    }
+
     return (
         <div className={animateModal} onClick={closeModal}>
             <div className="modal-area slide-down">
@@ -94,18 +100,22 @@ function Modal(props) {
                             </div>
 
                             {isEdit &&
-                                <ButtonAppend text="Add new task" handleClick={handleAppendCheckbox} />
+                                <ButtonAppend
+                                    text={Constants.APPEND_CHECKBOX_BUTTON_TITLE}
+                                    handleClick={handleAppendCheckbox}
+                                />
                             }
                         </div>
 
                     </div>
                 </Scrollbars>
 
-                {isEdit &&
-                    <div className="button__container">
-                        <ButtonText text="Save" handleClick={saveChanges} />
-                    </div>
-                }
+                <div className="button__container">
+                    {isEdit
+                        ? <ButtonText text={Constants.BUTTON_SAVE_TITLE} handleClick={saveChanges} />
+                        : <ButtonText text={Constants.BUTTON_REMOVE_TITLE} handleClick={removeCard} />
+                    }
+                </div>
 
             </div>
         </div>

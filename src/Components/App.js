@@ -4,7 +4,7 @@ import AddTodoCard from '@Components/AddTodoCard/AddTodoCard';
 import TodoList from '@Components/TodoList/TodoList';
 import LoaderCat from '@Components/Common/SvgIcons/LoaderCat';
 import Modal from '@Components/Modal/Modal';
-import {func} from 'prop-types';
+import * as Constants from '@/static/constants';
 
 function App() {
     const [todos, setTodo] = useState([]);
@@ -29,14 +29,18 @@ function App() {
             {
                 id: todos.length + 1,
                 title,
-                body: 'Write description here',
+                body: Constants.CREATED_CARD_TITLE,
                 checkboxes: [],
             }
         ]))
     }
 
+    function removeTodo(position) {
+        todos.splice(position, 1); // position = integer;
+    }
+
     function changeTodo(position, editedCard) {
-        todos.splice(position, 1, editedCard); // position = integer; editCard = {}
+        todos.splice(position, 1, editedCard); // position = integer; editedCard = {}
     }
 
     function modalShow(id) {
@@ -46,7 +50,7 @@ function App() {
 
     function appendCheckbox(arr) {
         arr.push({
-            title: 'Write text here',
+            title: Constants.CREATED_CHECKBOX_TITLE,
             completed: false
         });
     }
@@ -72,12 +76,13 @@ function App() {
                 </div>
                 {isOpenModal && (
                     <Modal
-                        modalShow={modalShow}
-                        editMode={editMode}
                         todo={todos[cardId - 1]}
+                        editMode={editMode}
                         changeTodo={changeTodo}
                         appendCheckbox={appendCheckbox}
                         removeCheckbox={removeCheckbox}
+                        removeTodo={removeTodo}
+                        modalShow={modalShow}
                     />
                 )}
             </main>
