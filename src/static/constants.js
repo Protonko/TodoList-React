@@ -7,3 +7,5 @@ export const BUTTON_REMOVE_TITLE = 'Remove';
 export const REMOVE_LINK_TITLE = 'Remove item';
 export const CLOSE_SYMBOL = '\u00D7';
 export const MIN_HEIGHT_TEXTAREA = 105;
+export const API_LINK = 'https://egorermolaev.ru/todos.json';
+export const API_LINK_CHECKBOXES = 'https://egorermolaev.ru/checkboxes.json';

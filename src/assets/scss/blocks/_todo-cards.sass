@@ -1,0 +1,24 @@
+.todo-cards
+    $horizontal-gutter: 30px
+    $vertical-gutter: 30px
+
+    &__list
+        display: flex
+        align-items: stretch
+        flex-wrap: wrap
+
+        margin-top: rem(-$vertical-gutter)
+        margin-right: rem(-$horizontal-gutter / 2)
+        margin-left: rem(-$horizontal-gutter / 2)
+
+    &__item
+        width: percentage(1 / 3)
+        margin-top: rem($vertical-gutter)
+        padding-right: rem($horizontal-gutter / 2)
+        padding-left: rem($horizontal-gutter / 2)
+
+        @media #{$screen-min-sm} and #{$screen-max-lg}
+            width: percentage(1 / 2)
+
+        @media #{$screen-max-sm}
+            width: 100%

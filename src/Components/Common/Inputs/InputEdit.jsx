@@ -1,8 +1,16 @@
 import React from 'react';
 
-function InputEdit(props) {
+function InputEdit({className, title, handleInput}) {
+    const classNames = className ? className : '';
+
     return (
-        <input className={`input input--edit ${props.className}`} type="text" defaultValue={props.title} onChange={props.handleChange} />
+        <span contentEditable={true}
+              className={`input input--editable ${classNames}`}
+              suppressContentEditableWarning={true}
+              onInput={handleInput}
+        >
+            {title}
+        </span>
     )
 }
 

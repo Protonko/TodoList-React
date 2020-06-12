@@ -1,45 +1,53 @@
-import React, {Fragment, useEffect, useState} from 'react';
-import InputEdit from '@Components/Common/Inputs/InputEdit';
-import * as Constants from '@/static/constants';
+import React from 'react';
+import useGlobal from '@store';
 
-function Checkbox(props) {
-    const [valueCheckbox, setValueCheckbox] = useState(props.title);
-    const checkboxSingle = props.checkboxSingle;
+import CheckboxEdit from '@Components/Checkbox/CheckboxEdit';
+import CheckboxView from '@Components/Checkbox/CheckboxView';
 
-    useEffect(() => {
-        checkboxSingle.title = valueCheckbox;
-    }, [valueCheckbox]);
+function Checkbox({ id, className }) {
+    const [globalState, globalActions] = useGlobal();
+    const currentTodoCheckbox = globalState.checkboxes.filter(elem => elem.id === id)[0];
 
-    function handleChange(event) {
-        setValueCheckbox(event.target.value);
+    function toggleCheckbox() {
+        const editedCheckboxes = globalState.checkboxes.map(checkbox => {
+            if (checkbox.id === id) {
+                checkbox.completed = !checkbox.completed;
+            }
+
+            return checkbox;
+        });
+
+        globalActions.checkboxes.completeToggle(editedCheckboxes);
+    }
+
+    function removeCheckbox() {
+        globalActions.checkboxes.removeCheckbox(currentTodoCheckbox.id);
+    }
+
+    function handleInput(event) {
+        globalState.checkboxes.map(checkbox => {
+            if (checkbox.id === id) {
+                checkbox.title = event.target.textContent;
+            }
+
+            return checkbox;
+        });
     }
 
     return (
-        <label className={`checkbox ${props.className}`} data-checkbox-id={props.id}>
-            {props.isEdit
-                ? (
-                    <Fragment>
-                        <InputEdit title={props.title} handleChange={handleChange} />
-                        <a className="checkbox__remove"
-                           href="#"
-                           title={Constants.REMOVE_LINK_TITLE}
-                           onClick={() => props.handleClickRemove(props.id)}
-                        >
-                            {Constants.CLOSE_SYMBOL}
-                        </a>
-                    </Fragment>
-                )
-                : (
-                    <Fragment>
-                        <input className="checkbox__input"
-                               type="checkbox"
-                               name="checkbox"
-                               checked={checkboxSingle.completed}
-                               onChange={() => props.handleComplete(checkboxSingle)}
-                        />
-                        <span className="checkbox__text">{props.title}</span>
-                    </Fragment>
-                )
+        <label className={`checkbox ${className}`}>
+            {globalState.isEdit
+                ? <CheckboxEdit
+                    title={currentTodoCheckbox.title}
+                    completed={currentTodoCheckbox.completed}
+                    handleRemove={removeCheckbox}
+                    handleInput={handleInput}
+                />
+                : <CheckboxView
+                    title={currentTodoCheckbox.title}
+                    completed={currentTodoCheckbox.completed}
+                    handleChange={toggleCheckbox}
+                />
             }
         </label>
     )

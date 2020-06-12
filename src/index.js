@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '@/assets/index.css';
-import App from '@Components/App';
+import '@/assets/scss/style.sass';
+import App from '@Components/App.jsx';
 import 'reset-css';
 require('svgxuse');
 

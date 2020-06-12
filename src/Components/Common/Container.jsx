@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Header({ children }) {
+function Container({ children }) {
     return (
-        <header className="header">
+        <div className="container">
             {children}
-        </header>
-    )
+        </div>
+    );
 }
 
-Header.propTypes = {
+Container.propTypes = {
     children: PropTypes.node.isRequired,
 }
 
-export default Header;
+export default Container;

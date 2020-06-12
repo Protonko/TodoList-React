@@ -1,9 +1,9 @@
 import React from 'react';
 
-function ButtonText(props) {
+function ButtonText({ text, handleClick }) {
     return (
-        <button className="button button--save" onClick={props.handleClick}>
-            {props.text}
+        <button className="button button--save" onClick={handleClick}>
+            {text}
         </button>
     )
 }

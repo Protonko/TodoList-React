@@ -11,4 +11,4 @@ export const NAVBAR_ITEMS = [
         title: 'probegrofanston@mail.ru',
         link: 'mailto:probegrofanston@mail.ru',
     },
-]
+];

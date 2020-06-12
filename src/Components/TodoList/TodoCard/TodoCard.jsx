@@ -1,49 +1,54 @@
-import React, {useEffect, useState} from 'react';
-import ButtonEdit from '@Components/Common/Buttons/ButtonEdit';
-import ButtonView from '@Components/Common/Buttons/ButtonView';
+import React from 'react';
+import Dotdotdot from 'react-dotdotdot';
+import editIcon from '@/assets/icons/svg/pencil.svg';
+import viewIcon from '@/assets/icons/svg/eye.svg';
+import useGlobal from '@store';
 
-function TodoCard(props) {
-    const [cropTitle, setCropTitle] = useState(props.title);
-    const [cropDescription, setCropDescription] = useState(props.description);
+import ButtonIcon from '@Components/Common/Buttons/ButtonIcon';
+import PropTypes from 'prop-types';
 
-    useEffect(() => {
-        setCropTitle(props.title);
-        setCropDescription(props.description);
-        cropText();
-    }, [props.title, props.description]);
+function TodoCard({ id, title, description}) {
+    const [globalState, globalActions] = useGlobal();
 
-    function showModalWithParams(isEdit) { // isEdit = true || false
-        props.modalShow(props.id);
-        props.setEditMode(isEdit);
-    }
-
-    function cropText() {
-        const size = { // max size text
-            title: 30,
-            description: 200,
-        };
-        const description = props.description;
-        const title = props.title;
-
-        if (title.length > size.title) setCropTitle(props.title.slice(0, size.title) + '...');
-        if (description.length > size.description) setCropDescription(props.description.slice(0, size.description) + '...');
+    function showModal(isEdit) { // isEdit = true || false
+        globalActions.todoCards.setCurrentTodoId(id);
+        globalActions.todoCards.setEditMode(isEdit);
     }
 
     return (
-        <article className="todo-card" id={props.id}>
-            <div className="todo-card__border" />
-            <h6 className="todo-card__title">
-                {cropTitle}
-            </h6>
-            <p className="todo-card__descr">
-                {cropDescription}
-            </p>
-            <div className="todo-card__button-container">
-                <ButtonEdit handleClick={() => showModalWithParams(true)} />
-                <ButtonView  handleClick={() => showModalWithParams(false)} />
-        </div>
-        </article>
+        <li className="todo-cards__item">
+            <article className="todo-card" id={id}>
+                <div className="todo-card__border" />
+                <Dotdotdot clamp={2}>
+                    <h6 className="todo-card__title">
+                        {title}
+                    </h6>
+                </Dotdotdot>
+
+                <Dotdotdot clamp={'auto'}>
+                    <p className="todo-card__descr">
+                        {description}
+                    </p>
+                </Dotdotdot>
+                <div className="todo-card__button-container">
+                    <ButtonIcon
+                        handleClick={() => showModal(true)}
+                        icon={editIcon}
+                    />
+                    <ButtonIcon
+                        handleClick={() => showModal(false)}
+                        icon={viewIcon}
+                    />
+                </div>
+            </article>
+        </li>
     )
+}
+
+TodoCard.propTypes = {
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
 }
 
 export default TodoCard;

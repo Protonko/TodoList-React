@@ -91,6 +91,10 @@ module.exports = {
         extensions: ['.js', '.jsx', '.json', '.jpg', '.png'],
         alias: {
             '@Components': path.resolve(__dirname, 'src/Components'),
+            '@actions': path.resolve(__dirname, 'src/actions'),
+            '@hooks': path.resolve(__dirname, 'src/hooks'),
+            '@store': path.resolve(__dirname, 'src/store'),
+            '@static': path.resolve(__dirname, 'src/static'),
             '@': path.resolve(__dirname, 'src'),
         },
     },
@@ -140,15 +144,14 @@ module.exports = {
                         loader: 'svg-sprite-loader',
                         options: {
                             extract: true,
-                            spriteFilename: './icons/icons.svg',
-                            symbolId: filePath => 'icon-' + path.basename(filePath).split('.')[0]
+                            publicPath: '/static/',
                         }
                     },
                     {
                         loader: 'svgo-loader',
                         options: {
                             plugins: [
-                                {convertColors: {currentColor: true}},
+                                {convertColors: {currentColor: false}},
                                 {removeAttrs: {attrs: '(opacity)'}}
                             ]
                         }

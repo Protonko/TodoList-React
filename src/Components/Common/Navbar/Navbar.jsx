@@ -1,16 +1,18 @@
 import React from 'react';
-import NavbarItem from './NavbarItem';
+import PropTypes from 'prop-types';
 
-function Navbar(props) {
-    const navbarItems = props.navbarItems;
+import NavbarItem from '@Components/Common/Navbar/NavbarItem';
+import Container from '@Components/Common/Container';
+
+function Navbar({ navbarItems }) {
     return (
-        <div className="container">
+        <Container>
             <nav className="navbar">
                 <ul className="navbar__list">
                     {navbarItems.map((elem, index) => {
                         return (
                             <NavbarItem
-                                key={elem.title + index}
+                                key={index}
                                 title={elem.title}
                                 link={elem.link}
                             />
@@ -18,8 +20,12 @@ function Navbar(props) {
                     })}
                 </ul>
             </nav>
-        </div>
+        </Container>
     )
+}
+
+Navbar.propTypes = {
+    navbarItems: PropTypes.array,
 }
 
 export default Navbar;
