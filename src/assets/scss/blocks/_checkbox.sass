@@ -10,7 +10,7 @@
     &__input
         display: none
 
-        &:checked + .checkbox__text
+        &:checked + &__text
             text-decoration: line-through
 
             &::before
@@ -26,8 +26,10 @@
                 color: $white
 
     &__text
+        $padding: 2px
+
         position: relative
-        padding: rem(2px) rem(2px) rem(2px) rem(25px)
+        padding: rem($padding) rem($padding) rem($padding) rem(25px)
         color: $text-color
         outline-color: $amaranth
 
@@ -38,7 +40,7 @@
             width: rem(15px)
             min-width: rem(15px)
             height: rem(15px)
-            content: ''
+            content: ""
             transition: .3s all
             transform: translateY(-50%)
             border: rem(1px) solid $text-color

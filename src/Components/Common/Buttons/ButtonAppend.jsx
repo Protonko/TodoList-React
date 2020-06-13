@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import addIcon from '@/assets/icons/svg/plus.svg';
 
 function ButtonAppend({ text, handleClick }) {
@@ -12,6 +13,11 @@ function ButtonAppend({ text, handleClick }) {
             </span>
         </button>
     )
+}
+
+ButtonAppend.propTypes = {
+    text: PropTypes.string.isRequired,
+    handleClick: PropTypes.func.isRequired,
 }
 
 export default ButtonAppend;

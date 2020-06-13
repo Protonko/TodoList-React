@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import {Scrollbars} from 'react-custom-scrollbars';
 import * as Constants from '@static/constants';
 
@@ -37,6 +38,11 @@ function Textarea({ title, handleInput }) {
             </Scrollbars>
         </div>
     )
+}
+
+Textarea.propTypes = {
+    title: PropTypes.string.isRequired,
+    handleInput: PropTypes.func.isRequired,
 }
 
 export default Textarea;

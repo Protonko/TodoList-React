@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import useGlobal from '@store';
 
 import CheckboxEdit from '@Components/Checkbox/CheckboxEdit';
@@ -51,6 +52,11 @@ function Checkbox({ id, className }) {
             }
         </label>
     )
+}
+
+Checkbox.propTypes = {
+    id: PropTypes.string.isRequired,
+    className: PropTypes.string.isRequired,
 }
 
 export default Checkbox;

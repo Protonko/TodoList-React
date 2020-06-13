@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function InputAdd({ params, placeholder }) {
     return (
@@ -9,6 +10,11 @@ function InputAdd({ params, placeholder }) {
             placeholder={placeholder}
         />
     )
+}
+
+InputAdd.propTypes = {
+    params: PropTypes.object.isRequired,
+    placeholder: PropTypes.string.isRequired,
 }
 
 export default InputAdd;

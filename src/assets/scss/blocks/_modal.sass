@@ -1,5 +1,4 @@
 .modal
-
     &__overlay
         position: fixed
         z-index: 999
@@ -22,6 +21,9 @@
         border-radius: rem(8px)
         background-color: $white
 
+        @media #{$screen-max-sm}
+            max-width: rem(300px)
+
         &__title
             font-size: em(18px)
             padding: rem(20px)
@@ -40,20 +42,13 @@
             outline-color: $amaranth
 
         &__checkbox
-
             &-single
                 &:not(:last-child)
                     margin-bottom: rem(5px)
 
             &-wrapper
-
                 &:not(:last-child)
                     margin-bottom: rem(5px)
 
         &__textarea
             margin-bottom: rem(10px)
-
-    @media #{$screen-max-sm}
-
-        &-area
-            max-width: rem(300px)

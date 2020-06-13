@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function ButtonView({ icon, handleClick }) {
     return (
@@ -12,5 +13,11 @@ function ButtonView({ icon, handleClick }) {
         </button>
     )
 }
+
+ButtonView.propTypes = {
+    icon: PropTypes.object.isRequired,
+    handleClick: PropTypes.func.isRequired,
+}
+
 
 export default ButtonView;

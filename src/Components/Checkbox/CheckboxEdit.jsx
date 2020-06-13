@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as Constants from '@static/constants';
 
 import InputEdit from '@Components/Common/Inputs/InputEdit';
@@ -16,6 +17,12 @@ function CheckboxEdit({ title, handleRemove, handleInput }) {
             </a>
         </>
     )
+}
+
+CheckboxEdit.propTypes = {
+    title: PropTypes.string.isRequired,
+    handleRemove: PropTypes.func.isRequired,
+    handleInput: PropTypes.func.isRequired,
 }
 
 export default CheckboxEdit;

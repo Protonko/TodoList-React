@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function InputEdit({className, title, handleInput}) {
     const classNames = className ? className : '';
@@ -12,6 +13,12 @@ function InputEdit({className, title, handleInput}) {
             {title}
         </span>
     )
+}
+
+InputEdit.propTypes = {
+    title: PropTypes.string.isRequired,
+    className: PropTypes.string,
+    handleInput: PropTypes.func.isRequired,
 }
 
 export default InputEdit;

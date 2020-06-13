@@ -12,11 +12,20 @@
 
     &:hover
         padding-bottom: rem(56px)
-
-        .todo-card__border
+    &:hover &
+        &__border
             transform: scale(1.04)
 
-        .todo-card__button-container
+            @media #{$screen-max-sm}
+                transform: scale(1)
+
+            @media #{$screen-min-sm} and #{$screen-max-lg}
+                transform: scale(1)
+
+            @media #{$screen-min-lg} and #{$screen-max-xl}
+                transform: scale(1)
+
+        &__button-container
             opacity: 1
 
     &__border
@@ -47,36 +56,11 @@
         opacity: 0
         transition: .3s opacity
 
+        @media #{$screen-max-xl}
+            opacity: 1
+
         .button
             cursor: pointer
 
             &:first-child
                 margin-right: rem(10px)
-
-
-    @media #{$screen-max-sm}
-        &:hover
-            .todo-card__border
-                transform: scale(1)
-
-        &__button
-            &-container
-                opacity: 1
-
-    @media #{$screen-min-sm} and #{$screen-max-lg}
-        &:hover
-            .todo-card__border
-                transform: scale(1)
-
-        &__button
-            &-container
-                opacity: 1
-
-    @media #{$screen-min-lg} and #{$screen-max-xl}
-        &:hover
-            .todo-card__border
-                transform: scale(1)
-
-        &__button
-            &-container
-                opacity: 1

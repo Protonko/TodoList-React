@@ -1,16 +1,15 @@
 .navbar
     padding: rem(20px) 0
+
     &__list
         display: flex
         justify-content: space-between
-    &__item a
-        color: $white
-        text-decoration: none
-        
-    @media #{$screen-max-sm}
-        
-        &__item
-            
+
+    &__item
+        @media #{$screen-max-sm}
             &:last-child
                 display: none
-        
+
+        a
+            color: $white
+            text-decoration: none

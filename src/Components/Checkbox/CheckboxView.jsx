@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function CheckboxView({ title, completed, handleChange }) {
     return (
@@ -12,6 +13,12 @@ function CheckboxView({ title, completed, handleChange }) {
             <span className="checkbox__text">{title}</span>
         </>
     )
+}
+
+CheckboxView.propTypes = {
+    title: PropTypes.string.isRequired,
+    completed: PropTypes.bool.isRequired,
+    handleChange: PropTypes.func.isRequired,
 }
 
 export default CheckboxView;

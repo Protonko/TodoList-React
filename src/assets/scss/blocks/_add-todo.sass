@@ -6,12 +6,15 @@
     &__input
         width: 50%
 
+        @media #{$screen-max-sm}
+            width: 70%
+
     &__button
         display: flex
         align-items: center
 
-        &:active
-            .add-todo__button-icon
+        &:active &
+            &-icon
                 color: $white
 
         &-text
@@ -19,8 +22,3 @@
 
         &-icon
             transition: .5s color
-
-    @media #{$screen-max-sm}
-
-        &__input
-            width: 70%
