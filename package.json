@@ -29,9 +29,7 @@
     "prod": "cross-env NODE_ENV=production webpack --mode production --open --hot",
     "start": "cross-env NODE_ENV=development webpack-dev-server --mode development --open --hot",
     "watch": "cross-env NODE_ENV=development webpack --mode development --open --hot --watch",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "cross-env NODE_ENV=production webpack --mode production"
   },
   "eslintConfig": {
     "extends": "react-app"
