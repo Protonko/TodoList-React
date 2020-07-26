@@ -7,12 +7,12 @@
 Todo has:
 <ul>
   <li>
-    Modal window containing area for add checkboxes, edit text and buttons for remove card and saving chnges;
+    Modal window containing area for add checkboxes, edit text and buttons for remove card and save changes;
   </li>
   <li>
     Snippet card containing text and buttons for edit and view full content and checkboxes
   </li>
   <li>
-    Form for adding new todo card
+    Form for add new todo card
   </li>
 </ul>
