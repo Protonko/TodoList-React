@@ -35,6 +35,16 @@ function ModalEdit() {
         globalActions.checkboxes.addCheckbox(checkbox)
     }
 
+    function renderCheckbox(elem) {
+      return (
+        <Checkbox
+          key={elem.id}
+          className="modal-area__checkbox-single"
+          id={elem.id}
+        />
+      );
+    }
+
     return (
         <>
             <InputEdit
@@ -59,13 +69,7 @@ function ModalEdit() {
 
                     <div className="modal-area__block">
                         <div className="modal-area__checkbox-wrapper">
-                            {currentTodoCheckboxes.map((elem, index) => (
-                                <Checkbox
-                                    key={index}
-                                    className="modal-area__checkbox-single"
-                                    id={elem.id}
-                                />
-                            ))}
+                            {currentTodoCheckboxes.map(renderCheckbox)}
                         </div>
 
                         <ButtonAppend

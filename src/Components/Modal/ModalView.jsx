@@ -16,6 +16,16 @@ function ModalView() {
         globalActions.todoCards.removeTodo(currentTodo.id);
     }
 
+    function renderCheckbox(elem) {
+       return (
+         <Checkbox
+           key={elem.id}
+           className="modal-area__checkbox-single"
+           id={elem.id}
+         />
+       );
+    }
+
     return (
         <>
             <h2 className="modal-area__title">
@@ -37,13 +47,7 @@ function ModalView() {
 
                     <div className="modal-area__block">
                         <div className="modal-area__checkbox-wrapper">
-                            {currentTodoCheckboxes.map((elem, index) => (
-                                <Checkbox
-                                    key={index}
-                                    className="modal-area__checkbox-single"
-                                    id={elem.id}
-                                />
-                            ))}
+                            {currentTodoCheckboxes.map(renderCheckbox)}
                         </div>
                     </div>
 
